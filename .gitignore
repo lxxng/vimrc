@@ -1,5 +1,6 @@
 /.idea
 /*.iml
+.vscode
 /sessions
 /plugged
 /lazy
