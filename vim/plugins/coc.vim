@@ -38,8 +38,8 @@ if Plug('neoclide/coc.nvim', !has('nvim'), {'branch': 'release'}) " coc
 
 
     " 跳转告警
-    noremap     <silent> <S-F1> <Esc>:<C-u>call GotoError('diagnosticPrevious')<CR>
-    noremap     <silent> <F1>   <Esc>:<C-u>call GotoError('diagnosticNext')<CR>
+    noremap  <silent>  [e  <Esc>:<C-u>call GotoError('diagnosticPrevious')<CR>
+    noremap  <silent>  ]e  <Esc>:<C-u>call GotoError('diagnosticNext')<CR>
     function! GotoError(action)
         let s:list = CocAction('diagnosticList')
         for obj in s:list

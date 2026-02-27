@@ -1,3 +1,4 @@
+local vim = vim
 -- 始终显示状态栏(set laststatus=2) 且占满
 vim.opt.laststatus = 3
 -- <C-Insert>复制 
@@ -84,9 +85,9 @@ vim.api.nvim_create_autocmd('WinEnter', {
 })
 
 
-vim.keymap.set('n', '<F1>', function()
+vim.keymap.set('n', ']e', function()
     vim.diagnostic.jump({count = 1, _highest = true})
 end)
-vim.keymap.set('n', '<S-F1>', function()
+vim.keymap.set('n', '[e', function()
     vim.diagnostic.jump({count = -1, _highest = true})
 end)

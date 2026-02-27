@@ -164,13 +164,13 @@ nnoremap <silent> <C-L> <Esc>:<C-U>noh<CR><C-L>
 " IdeaVim Action
 " Mappings
 " 跳转错误 F2
-map   <F1> <Action>(GotoNextError)
+map  ]e  <Action>(GotoNextError)
 " 跳转错误 Shift-F2
-map <S-F1> <Action>(GotoPreviousError)
+map  [e  <Action>(GotoPreviousError)
 " 跳转vsc改动
-map   <F2> <Action>(VcsShowNextChangeMarker)
+map  ]c  <Action>(VcsShowNextChangeMarker)
 " 跳转vsc改动
-map <S-F2> <Action>(VcsShowPrevChangeMarker)
+map  [c  <Action>(VcsShowPrevChangeMarker)
 " 重命名 Shift-F6
 map <Leader>r <Action>(RenameElement)
 " 文件搜索 Ctrl-Shift-N

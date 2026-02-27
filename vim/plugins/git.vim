@@ -1,8 +1,8 @@
 Plug 'tpope/vim-fugitive'
 if Plug('airblade/vim-gitgutter', !has('nvim'))
   let g:gitgutter_preview_win_floating = 1
-  nnoremap <silent> <F2>   <Esc>:<C-U>call GitGutterNextCycleHunk()<CR>
-  nnoremap <silent> <S-F2> <Esc>:<C-U>call GitGutterPrevCycleHunk()<CR>
+  nnoremap <silent>  ]c  <Esc>:<C-U>call GitGutterNextCycleHunk()<CR>
+  nnoremap <silent>  [c <Esc>:<C-U>call GitGutterPrevCycleHunk()<CR>
   function! GitGutterNextCycleHunk()
     let current_line = line('.')
     let hunks = GitGutterGetHunks()

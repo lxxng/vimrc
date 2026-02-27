@@ -3,7 +3,7 @@
 try
     if has('termguicolors')
         set bg=dark
-        colorscheme everforest
+        colorscheme gruvbox8
     else
         colorscheme onedark
     endif
@@ -12,7 +12,7 @@ endtry
 " 设置字体
 if has('gui_running')
     try
-        set guifont=JetBrainsMonoNL_NFM:h12
+        set guifont=Maple_Mono_Normal_NF_CN:h12
     catch
         try
             set guifont=Consolas:h12

@@ -1,4 +1,5 @@
 local vim = vim
+local vscode = require('vscode')
 local action = function(...)
     local args = {...}
     return function()
@@ -7,15 +8,15 @@ local action = function(...)
     end
 end
 
-vim.keymap.set({'n','x'}, '<Leader><Leader>',  action('workbench.action.showCommands'))
-
 vim.keymap.set('n', '<Leader>ef', action('workbench.files.action.showActiveFileInExplorer'))
 
 vim.keymap.set('n', '<Leader>ff', action('workbench.action.quickOpen') )
 vim.keymap.set('n', '<Leader>fg', action('workbench.action.quickTextSearch') )
 
-vim.keymap.set('n', '<F1>', action('editor.action.marker.nextInFiles') )
-vim.keymap.set('n', '<S-F1>', action('editor.action.marker.prevInFiles') )
+vim.keymap.set('n', ']e', action('editor.action.marker.next'))
+vim.keymap.set('n', '[e', action('editor.action.marker.prev'))
+vim.keymap.set('n', ']c', action('workbench.action.editor.nextChange'))
+vim.keymap.set('n', '[c', action('workbench.action.editor.previousChange'))
 
 vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename)
 vim.keymap.set({'n','x'}, '<Leader>l', vim.lsp.buf.format)
