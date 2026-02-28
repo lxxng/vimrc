@@ -1,27 +1,49 @@
 local vim = vim
 local vscode = require('vscode')
-local action = function(...)
-    local args = {...}
-    return function()
-        ---@diagnostic disable-next-line: deprecated
-        require('vscode').action(unpack(args))
-    end
+vim.notify = vscode.notify
+local function map(mode, lhs, rhs)
+  vim.keymap.set(mode, lhs, function() vscode.action(rhs) end, { silent = true, noremap = true })
 end
+map('n', '<Leader>ef', 'workbench.files.action.showActiveFileInExplorer')
 
-vim.keymap.set('n', '<Leader>ef', action('workbench.files.action.showActiveFileInExplorer'))
+map('n', '<Leader>ff', 'workbench.action.quickOpen')
+map('n', '<Leader>fg', 'workbench.action.quickTextSearch')
 
-vim.keymap.set('n', '<Leader>ff', action('workbench.action.quickOpen') )
-vim.keymap.set('n', '<Leader>fg', action('workbench.action.quickTextSearch') )
+map('n', ']e', 'editor.action.marker.next')
+map('n', '[e', 'editor.action.marker.prev')
+map('n', ']c', 'workbench.action.editor.nextChange')
+map('n', '[c', 'workbench.action.editor.previousChange')
 
-vim.keymap.set('n', ']e', action('editor.action.marker.next'))
-vim.keymap.set('n', '[e', action('editor.action.marker.prev'))
-vim.keymap.set('n', ']c', action('workbench.action.editor.nextChange'))
-vim.keymap.set('n', '[c', action('workbench.action.editor.previousChange'))
+map('n', '<Leader>r', 'editor.action.rename')
+map('n', '<Leader>l', 'editor.action.formatDocument')
+map('x', '<Leader>l', 'editor.action.formatSelection')
+map('n', '<Tab>', 'editor.action.inlineSuggest.commit')
 
-vim.keymap.set('n', '<Leader>r', vim.lsp.buf.rename)
-vim.keymap.set({'n','x'}, '<Leader>l', vim.lsp.buf.format)
-vim.keymap.set('n', 'gR', action('editor.action.goToReferences'))
-vim.keymap.set('n', 'gd', action('editor.action.revealDefinition'))
-vim.keymap.set('n', 'gy', action('editor.action.goToTypeDefinition'))
-vim.keymap.set('n', 'gI', action('editor.action.goToImplementation') )
-vim.keymap.set('n', 'gS', action('java.action.navigateToSuperImplementation'))
+map('n', 'gR', 'editor.action.goToReferences')
+map('n', 'gd', 'editor.action.revealDefinition')
+map('n', 'gy', 'editor.action.goToTypeDefinition')
+map('n', 'gI', 'editor.action.goToImplementation')
+map('n', 'gS', 'java.action.navigateToSuperImplementation')
+
+map('n', 'zM', 'editor.foldAll')
+map('n', 'zR', 'editor.unfoldAll')
+map('n', 'zc', 'editor.fold')
+map('n', 'zC', 'editor.foldRecursively')
+map('n', 'zo', 'editor.unfold')
+map('n', 'zO', 'editor.unfoldRecursively')
+map('n', 'za', 'editor.toggleFold')
+vim.keymap.set('n', 'j', function()
+  if vim.v.count == 0 then
+    vscode.action('cursorDown')
+  else
+    return 'j'
+  end
+end, { expr = true })
+
+vim.keymap.set('n', 'k', function()
+  if vim.v.count == 0 then
+    vscode.action('cursorUp')
+  else
+    return 'k'
+  end
+end, { expr = true })
