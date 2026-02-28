@@ -16,7 +16,9 @@ Source vim/setting.vim
 " 加载映射(map)
 Source vim/mapping.vim
 " 加载vim的配置
-Source vim/vim.vim
+if !exists('g:vscode')
+    Source vim/vim.vim
+endif
 " 加载vim插件(vim-plug)
 Source vim/plugin.vim
 if has('nvim')

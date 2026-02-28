@@ -39,6 +39,11 @@ pcall(vim.keymap.del, 'n', 'gri')
 pcall(vim.keymap.del, 'n', 'grt')
 pcall(vim.keymap.del, 'n', 'grn')
 pcall(vim.keymap.del, { 'n', 'x' }, 'gra')
+
+if not not vim.g.vscode then
+    return
+end
+
 -- 终端
 vim.keymap.set('n', '<Leader>t', '<CMD>botright terminal<CR>', { noremap = true })
 -- 终端 打开时 自动切换为startinsert

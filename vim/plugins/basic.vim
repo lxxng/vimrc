@@ -1,8 +1,8 @@
-" vim7
+" default
 Plug 'tpope/vim-sensible'     " 默认配置
-Plug 'tpope/vim-unimpaired'   " []相关的映射
+Plug 'tpope/vim-repeat'       " 重复 .
+Plug 'kana/vim-textobj-user'  " 自定义文本对象
 " operator
-Plug   'tpope/vim-repeat'                           " 重复 .
 Plug   'tpope/vim-surround'                         " 环绕 y/c/d+s
 PlugIf 'tpope/vim-commentary', !exists('g:vscode')  " 注释 gc
 Plug   'inkarkat/vim-ReplaceWithRegister'           " 替换 gr
@@ -12,7 +12,6 @@ xmap    ga  <Plug>(EasyAlign)
 Plug   'tommcdo/vim-exchange'                       " 互换操作 cx
 
 " motion
-Plug 'kana/vim-textobj-user'            " 自定义文本对象
 Plug 'kana/vim-textobj-entire'          " 全文文本对象 i/a e
 Plug 'michaeljsmith/vim-indent-object'  " 缩进文本对象 i/a i/I
 " Plug 'vim-scripts/argtextobj.vim'     " 参数文本对象 i/a a
@@ -34,12 +33,13 @@ map #  <Plug>(asterisk-z#)
 map g* <Plug>(asterisk-gz*)
 map g# <Plug>(asterisk-gz#)
 
-if Plug('kana/vim-arpeggio', !exists('g:vscode')) " 允许同时按键的映射
-    call plug#load('vim-arpeggio')  " 立刻加载
-    if exists('g:loaded_arpeggio')
+Plug 'kana/vim-arpeggio' " 允许同时按键的映射
+call plug#load('vim-arpeggio')  " 立刻加载
+if exists('g:loaded_arpeggio')
+    if !exists('g:vscode')  " vscode不支持insert模式
         Arpeggio inoremap jk <Esc>
-        Arpeggio nnoremap io  :
     endif
+    Arpeggio nnoremap io  :
 endif
 
 if Plug('simeji/winresizer', !exists('g:vscode')) " 窗口大小
