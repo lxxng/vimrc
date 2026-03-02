@@ -85,9 +85,6 @@ return {
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         cond = not vim.g.vscode,
         event = 'VeryLazy',
-        config = function()
-            vim.keymap.set({ 'n', 'x', 'o' }, 'M', '%', { remap = true })
-        end,
     },
     {
         -- 注释

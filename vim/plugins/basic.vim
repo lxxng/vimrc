@@ -57,11 +57,7 @@ if Plug('LunarWatcher/auto-pairs', v:version >= 800 && !has('nvim'))  " 自动�
     let g:AutoPairsCompleteOnlyOnSpace = 1
 endif
 
-if Plug('chrisbra/matchit', v:version >= 800 && !has('nvim'))         " 百分号%匹配
-    nmap M %
-    xmap M %
-    omap M %
-endif
+PlugIf 'chrisbra/matchit', v:version >= 800 && !has('nvim')         " 百分号%匹配
 
 if Plug('mg979/vim-visual-multi', v:version >= 800 && !has('nvim')) " 多光标
     let g:VM_maps                    = {}

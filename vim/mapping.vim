@@ -26,7 +26,7 @@ endif
 " 1.4 不常用的HLM键
 noremap  H  ^
 noremap  L  $
-noremap  M  %
+map      M  %
 " 1.5 命令行模式 与Shell保持一致
 cnoremap  <C-A>  <Home>
 if has('terminal')
