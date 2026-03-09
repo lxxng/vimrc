@@ -66,8 +66,6 @@ endif
 " 搜索智能大小写 高亮 动态显示
 set ignorecase smartcase hlsearch incsearch
 nohlsearch
-" 显示匹配的括号
-set showmatch
 " 将Tab替换为空格
 set expandtab
 " 智能Tab
@@ -122,6 +120,7 @@ if has('termguicolors')
   set termguicolors
 endif
 set t_Co=256
+
 " 8. GUI
 if has('gui_running')
     set guioptions-=T " 取消工具栏
