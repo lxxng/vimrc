@@ -20,11 +20,7 @@ return {
                 -- Apply theme colors to terminal
                 terminal_colors = true,
             })
-            local load = require('vscode').load
-            require('vscode').load = function(...)
-                load(...)
-                vim.api.nvim_set_hl(0, 'TreesitterContext', { bg = vim.o.background == 'dark' and '#303030' or '#FFFFFF'})
-            end
+            vim.cmd.colorscheme('vscode')
         end,
     },
 }

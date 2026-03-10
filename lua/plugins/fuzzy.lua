@@ -6,13 +6,18 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
+            -- mingw64 make: 将 mingw32-make.exe 复制为 make.exe
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
         },
         config = function(_, opts)
-            local telescope = require("telescope")
+            local telescope = require('telescope')
             local actions = require('telescope.actions')
             local builtin = require('telescope.builtin')
             telescope.setup({
                 defaults = {
+                    path_display = {
+                        'truncate',  -- 优先展示文件结尾
+                    },
                     mappings = {
                         i = {
                             ['<Esc>'] = actions.close,
@@ -20,11 +25,16 @@ return {
                         },
                     },
                 },
+                pickers = {
+                    find_files = { hidden = true, },
+                    live_grep = { hidden = true, },
+                    grep_string = { hidden = true, },
+                    oldfiles = { hidden = true, },
+                    git_files = { hidden = true, }
+                },
                 extensions = {
                     ['ui-select'] = {},
-                    fzf = {
-                        fuzzy = true,
-                    },
+                    fzf = { fuzzy = true },
                 }
             })
 
@@ -41,6 +51,7 @@ return {
 
             vim.schedule(function()
                 telescope.load_extension('ui-select')
+                telescope.load_extension('fzf')
             end)
         end,
     },

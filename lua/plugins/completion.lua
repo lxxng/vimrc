@@ -8,11 +8,14 @@ return {
         opts = {
             keymap = {
                 preset      = 'none',
-                ['<Esc>']   = { 'snippet_forward', 'fallback'},
+                ['<Esc>']   = { 'snippet_forward', 'fallback' },
                 ['<CR>']    = { 'accept', 'fallback' },
                 ['<Tab>']   = { function(cmp)
-                    if cmp.snippet_active() then return cmp.accept()
-                    else return cmp.select_and_accept() end
+                    if cmp.snippet_active() then
+                        return cmp.accept()
+                    else
+                        return cmp.select_and_accept()
+                    end
                 end, 'snippet_forward', 'fallback' },
                 ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
                 ['<C-E>']   = { 'hide', 'fallback' },
@@ -27,8 +30,7 @@ return {
                 list = {
                     selection = {
                         preselect = function(ctx)
-                            return ctx.mode ~= 'cmdline'
-                            and not require('blink.cmp').snippet_active{ direction = 1 }
+                            return ctx.mode ~= 'cmdline' and not require('blink.cmp').snippet_active { direction = 1 }
                         end,
                         auto_insert = function(ctx) return ctx.mode == 'cmdline' end,
                     },
@@ -51,19 +53,34 @@ return {
             cmdline = {
                 keymap = {
                     preset      = 'none',
-                    ['<Tab>']   = { 'show_and_insert', 'select_next', 'fallback' },
-                    ['<S-Tab>'] = { 'show_and_insert', 'select_prev', 'fallback' },
+                    ['<Tab>']   = { 'show_and_insert', 'show_and_insert_or_accept_single', 'select_next', 'fallback' },
+                    ['<S-Tab>'] = { 'show_and_insert', 'show_and_insert_or_accept_single', 'select_prev', 'fallback' },
                     ['<C-E>']   = { 'cancel', 'fallback' },
                     ['<Down>']  = { 'select_next', 'fallback' },
                     ['<Up>']    = { 'select_prev', 'fallback' },
                     ['<C-N>']   = { 'select_next', 'fallback' },
                     ['<C-P>']   = { 'select_prev', 'fallback' },
                     -- 空格删除的同时隐藏
-                    ['<BS>']    = { function(cmp) cmp.hide() return false end, 'fallback' },
-                    ['<Space>'] = { function(cmp) cmp.hide() return false end, 'fallback' },
-                    ['<C-H>']   = { function(cmp) cmp.hide() return false end, 'fallback' },
-                    ['<C-W>']   = { function(cmp) cmp.hide() return false end, 'fallback' },
-                    ['<C-U>']   = { function(cmp) cmp.hide() return false end, 'fallback' },
+                    ['<BS>']    = { function(cmp)
+                        cmp.hide()
+                        return false
+                    end, 'fallback' },
+                    ['<Space>'] = { function(cmp)
+                        cmp.hide()
+                        return false
+                    end, 'fallback' },
+                    ['<C-H>']   = { function(cmp)
+                        cmp.hide()
+                        return false
+                    end, 'fallback' },
+                    ['<C-W>']   = { function(cmp)
+                        cmp.hide()
+                        return false
+                    end, 'fallback' },
+                    ['<C-U>']   = { function(cmp)
+                        cmp.hide()
+                        return false
+                    end, 'fallback' },
                 },
                 completion = {
                     ghost_text = {
