@@ -35,19 +35,18 @@ endfunction
 
 function! fFtT#locations(operator)
     let reverse = a:operator =~# '[FT]'
-    let [_, lnum, col_char, _] = getcharpos('.')
     let [_, lnum, col_byte, _] = getpos('.')
-    let list = getline('.')->str2list()->map({_,nr->nr->nr2char()})
+    let [_,    _, col_char, _] = getcharpos('.')
+    let list = getline('.')->str2list()->map({ -> nr2char(v:val)})
     let list = reverse ? list->slice(0, col_char - 1)->reverse() : list->slice(col_char)
     let dict = list->reduce({ dict, char -> extend(dict, { char : dict->get(char, 0) + 1 })}, {})
-    let line = list->map({_,char->char->char2nr()})->list2str()
+    let line = list->map({ -> char2nr(v:val)})->list2str()
     return dict->items()
-              \->filter({_,item->item[1]>=#v:count1})
-              \->map({_,item->reverse ? 
-                             \[lnum, col_byte - matchstrpos(line, item[0], 0, v:count1)[2]]
-                             \:
-                             \[lnum, match(line, item[0], 0, v:count1) + 1 + col_byte]
-                             \})
+              \->filter({_,item -> item[1]>=#v:count1})
+              \->map({_,item -> reverse ? 
+                             \[lnum, col_byte - matchend(line, item[0], 0, v:count1)]
+                             \ :
+                             \[lnum, col_byte + match   (line, item[0], 0, v:count1) + 1 ] })
 endfunction
 function! fFtT#ft(operator)
     let locations = fFtT#locations(a:operator)
