@@ -46,7 +46,7 @@ function! fFtT#locations(operator)
               \->map({_,item->reverse ? 
                              \[lnum, col_byte - matchstrpos(line, item[0], 0, v:count1)[2]]
                              \:
-                             \[lnum, match(line, item[0], 0, v:count1) + col_byte]
+                             \[lnum, match(line, item[0], 0, v:count1) + 1 + col_byte]
                              \})
 endfunction
 function! fFtT#ft(operator)
