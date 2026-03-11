@@ -43,7 +43,11 @@ function! fFtT#locations(operator)
     let line = list->map({_,char->char->char2nr()})->list2str()
     return dict->items()
               \->filter({_,item->item[1]>=#v:count1})
-              \->map({_,item->[lnum, (reverse ? -1 : 1) * (1 + match(line, item[0], 0, v:count1)) + col_byte]})
+              \->map({_,item->reverse ? 
+                             \[lnum, col_byte - matchstrpos(line, item[0], 0, v:count1)[2]]
+                             \:
+                             \[lnum, match(line, item[0], 0, v:count1) + col_byte]
+                             \})
 endfunction
 function! fFtT#ft(operator)
     let locations = fFtT#locations(a:operator)
