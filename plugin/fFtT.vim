@@ -51,7 +51,7 @@ function! fFtT#locations(operator)
 endfunction
 
 function! fFtT#ft(operator)
-    call fFtT#locations(a:operator)->fFtT#draw()
+    call fFtT#draw(fFtT#locations(a:operator))
     return a:operator
 endfunction
 
