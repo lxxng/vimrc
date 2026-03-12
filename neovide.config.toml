@@ -1,9 +1,2 @@
 # C:/Users/XXXXX/AppData/Roaming/neovide/config.toml
 no-multigrid = true
-[font]
-normal = ["Maple Mono Normal NF CN", "JetBrainsMono NF"]
-size = 12
-[font.features]
-"Maple Mono Normal NF CN" = [ "-calt" ]
-"JetBrainsMono NF" = [ "-calt" ]
-

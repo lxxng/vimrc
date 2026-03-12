@@ -1,18 +1,10 @@
 " 最后加载
-" 设置主题
-try
-    if has('termguicolors')
-        set bg=dark
-        colorscheme gruvbox8
-    else
-        colorscheme onedark
-    endif
-catch
-endtry
+" 清空选择模式的映射
+smapclear
 " 设置字体
 if has('gui_running')
     try
-        set guifont=Maple_Mono_Normal_NF_CN:h12
+        set guifont=Maple_Mono_Normal_NL_NF_CN:h12
     catch
         try
             set guifont=Consolas:h12
