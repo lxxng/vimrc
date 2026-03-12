@@ -38,7 +38,7 @@ map('n', 'zO', 'editor.unfoldRecursively')
 map('n', 'za', 'editor.toggleFold')
 vim.keymap.set('n', 'j', function()
   if vim.v.count == 0 then
-    vscode.action('cursorDown')
+    vscode.call('cursorDown')
   else
     return 'j'
   end
@@ -46,7 +46,7 @@ end, { expr = true })
 
 vim.keymap.set('n', 'k', function()
   if vim.v.count == 0 then
-    vscode.action('cursorUp')
+    vscode.call('cursorUp')
   else
     return 'k'
   end
