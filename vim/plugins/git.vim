@@ -1,4 +1,5 @@
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 if Plug('airblade/vim-gitgutter', !has('nvim'))
   let g:gitgutter_preview_win_floating = 1
   nnoremap <silent>  ]c  <Esc>:<C-U>call GitGutterNextCycleHunk()<CR>
