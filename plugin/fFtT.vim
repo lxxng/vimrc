@@ -4,7 +4,7 @@ endif
 
 augroup fFtTHighlight | autocmd!
     function! fFtT#hl_group()
-        highlight fFtTColor term=reverse,bold cterm=reverse,bold gui=reverse,bold
+        highlight! fFtTColor term=reverse,bold cterm=reverse,bold gui=reverse,bold
     endfunction
     autocmd ColorScheme * call fFtT#hl_group()
     autocmd SafeState * call fFtT#clear()
@@ -27,7 +27,7 @@ function! fFtT#draw(locations)
             call matchdelete(s:id, s:winid)
         endif
         let s:winid = win_getid()
-        let s:id = matchaddpos('FfTtColor', a:locations, 1001)
+        let s:id = matchaddpos('fFtTColor', a:locations, 1001)
         redraw
     endif
 endfunction
@@ -45,9 +45,9 @@ function! fFtT#locations(operator)
               \ ->items()
               \ ->filter({ -> v:val[1]>=#v:count1})
               \ ->map({_,item -> reverse ? 
-                            \ [lnum, col_byte - matchend(line, item[0], 0, v:count1)]
+                            \ [lnum, col_byte - matchend(line, '\C' .. item[0], 0, v:count1)]
                             \  :
-                            \ [lnum, col_byte + match   (line, item[0], 0, v:count1) + 1 ] })
+                            \ [lnum, col_byte + match   (line, '\C' .. item[0], 0, v:count1) + 1 ] })
 endfunction
 
 function! fFtT#ft(operator)
