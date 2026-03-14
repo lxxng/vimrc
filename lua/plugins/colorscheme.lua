@@ -20,7 +20,6 @@ return {
                 -- Apply theme colors to terminal
                 terminal_colors = true,
             })
-            vim.cmd.colorscheme('vscode')
         end,
     },
 }

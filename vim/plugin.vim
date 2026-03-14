@@ -11,10 +11,8 @@ Source vim/plugins/basic.vim
 if !exists('g:vscode')
     Source vim/plugins/filetree.vim
     Source vim/plugins/git.vim
-    Source vim/plugins/beauty.vim
     Source vim/plugins/fuzzy.vim
-    Source vim/plugins/coc.vim
-    Source vim/plugins/languages.vim
+    Source vim/plugins/colorscheme.vim
 endif
 
 PlugIf 'folke/lazy.nvim', has('nvim')
