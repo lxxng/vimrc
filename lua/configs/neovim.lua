@@ -1,4 +1,3 @@
-local vim = vim
 -- 始终显示状态栏(set laststatus=2) 且占满
 vim.opt.laststatus = 3
 -- <C-Insert>复制 

@@ -1,4 +1,3 @@
-local vim = vim
 local vscode = require('vscode')
 vim.notify = vscode.notify
 local function map(mode, lhs, rhs)

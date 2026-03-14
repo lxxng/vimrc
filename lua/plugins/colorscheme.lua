@@ -5,7 +5,6 @@ return {
         lazy = false,
         priority = 1000,
         config = function()
-            local colors = require('vscode.colors').get_colors()
             require('vscode').setup({
                 -- Enable transparent background
                 transparent = true,
