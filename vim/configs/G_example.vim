@@ -1,6 +1,4 @@
 " 最后加载
-" 清空选择模式的映射
-smapclear
 " 设置字体
 if has('gui_running')
     try
