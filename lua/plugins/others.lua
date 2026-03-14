@@ -21,19 +21,6 @@ return {
         },
     },
     {
-        -- git相关
-        'lewis6991/gitsigns.nvim',
-        event = 'VeryLazy',
-        config = function()
-            local git = require('gitsigns')
-            git.setup()
-            -- 跳转到上一个更改
-            vim.keymap.set('n', ']c', function() git.nav_hunk('next') end)
-            -- 跳转到下一个更改
-            vim.keymap.set('n', '[c', function() git.nav_hunk('prev') end)
-        end,
-    },
-    {
         'akinsho/bufferline.nvim',
         version = '*',
         event = 'VeryLazy',
@@ -53,6 +40,10 @@ return {
         'lukas-reineke/indent-blankline.nvim',
         main = 'ibl',
         opts = {
+            indent = {
+                char = '▏',
+            },
+            scope = { enabled = false },
         },
     },
     {
@@ -66,31 +57,6 @@ return {
             'nvzone/showkeys',
             opts = {
                 maxkeys = 15,
-            },
-        },
-    },
-    {
-        'folke/snacks.nvim',
-        priority = 999,
-        lazy = false,
-        ---@type snacks.Config
-        opts = {
-            bufdelete = {},
-            dashboard = {
-                preset = {
-                    header = [[]],
-                },
-            },
-            input = {},
-            picker = {
-                win = {
-                    input = {
-                        keys = {
-                            ['<Esc>'] = { 'close', mode = { 'i', 'n' } },
-                            ['<C-U>'] = false,
-                        },
-                    },
-                },
             },
         },
     },
@@ -114,6 +80,11 @@ return {
     {
         -- 光标当前词高亮
         'RRethy/vim-illuminate',
+        config = function()
+            require('illuminate').configure({
+                filetypes_denylist = { 'NvimTree' },
+            })
+        end,
     },
     {
         -- 侧边
