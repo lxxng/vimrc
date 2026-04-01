@@ -36,14 +36,42 @@ return {
         config = function(_, opts)
             local telescope = require('telescope')
             local builtin = require('telescope.builtin')
+            telescope.setup()
             telescope.setup(opts)
 
-            vim.keymap.set('n', '<leader>ff', builtin.find_files)
+            vim.g.telescope_input_ff = ''
+            vim.g.telescope_input_fg = ''
+
+            vim.keymap.set('n', '<leader>ff', function()
+                vim.ui.input({ prompt = 'keyword:', default = vim.g.telescope_input_ff }, function(input)
+                    if input == nil then
+                        vim.g.telescope_input_ff = ''
+                    else
+                        vim.g.telescope_input_ff = input
+
+                        local pattern = {}
+                        for i = 1, #input do
+                            local c = input:sub(i, i)
+                            local lower = c:lower()
+                            local upper = c:upper()
+                            if lower == upper then
+                                table.insert(pattern, c)
+                            else
+                                table.insert(pattern, "[" .. lower .. upper .. "]")
+                            end
+                        end
+                        builtin.find_files({ search_file = table.concat(pattern), hidden = true })
+                    end
+                end)
+            end)
+            vim.keymap.set('x', '<leader>ff', builtin.find_files)
             vim.keymap.set('n', '<leader>fg', function()
-                local cword = vim.fn.expand('<cword>')
-                vim.ui.input({ prompt = 'keyword:', default = cword }, function(input)
-                    if input and input ~= '' then
-                        builtin.grep_string({ search = input })
+                vim.ui.input({ prompt = 'keyword:', default = vim.g.telescope_input_fg }, function(input)
+                    if input == nil then
+                        vim.g.telescope_input_fg = ''
+                    else
+                        vim.g.telescope_input_fg = input
+                        builtin.grep_string( { search = input, hidden = true })
                     end
                 end)
             end)
